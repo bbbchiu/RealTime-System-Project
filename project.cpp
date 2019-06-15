@@ -140,10 +140,10 @@ void schedule(){
             maxTime=tR_list[0].timeT;
             id_r.clear();
             /****** 紀錄吃最多的"開始"時間點、"結束"時間點，還有當下的id ******/     
-            for(int i=0; i<tR_list.size();++i){
+            for(int i=tR_list.size()-1; i>=0;--i){
                 // cout << tR_list[i].id_v.size() << " " << maxNum <<endl;
                 if(tR_list[i].id_v.size() == maxNum){
-                    minTime = tR_list[i].timeT; // 吃最多的"開始"時間點
+                    maxTime = tR_list[i].timeT; // 吃最多的"結束"時間點
                     for(int j=0;j<tR_list[i].id_v.size();++j){
                         id_r.push_back(tR_list[i].id_v[j]); // 當下id
                     }
@@ -164,9 +164,9 @@ void schedule(){
                         if(j != id_r.size()){
                             break;
                         }
-                        i++;
+                        i--;
                     }
-                    maxTime = tR_list[i-1].timeT; // 吃最多的"結束"時間點
+                    minTime = tR_list[i+1].timeT; // 吃最多的"開始"時間點
                     break;
                 }
             }
